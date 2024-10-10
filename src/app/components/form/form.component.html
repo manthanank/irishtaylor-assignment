@@ -1,0 +1,33 @@
+<div class="container">
+    <!-- Form with Angular reactive form binding and submit handler -->
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- Name input field with validation -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+            <!-- Error message for name field -->
+            @if (form.controls['name'].invalid && form.controls['name'].touched) {
+            <div class="text-danger">
+                Name is required.
+            </div>
+            }
+        </div>
+        <!-- Email input field with validation -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" formControlName="email">
+            <!-- Error message for email field -->
+            @if (form.controls['email'].invalid && form.controls['email'].touched) {
+            <div class="text-danger">
+                A valid email is required.
+            </div>
+            }
+        </div>
+        <!-- Submit button, disabled if form is invalid -->
+        <button type="submit" class="btn btn-primary me-2" [disabled]="form.invalid">Submit</button>
+        <!-- Reset button to reset the form -->
+        <button type="button" class="btn btn-secondary me-2" (click)="form.reset()">Reset</button>
+        <!-- Cancel button to trigger cancel action -->
+        <button type="button" class="btn btn-danger me-2" (click)="cancel()">Cancel</button>
+    </form>
+</div>

@@ -1,0 +1,24 @@
+<form [formGroup]="form">
+    <!-- Name input field -->
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name">
+        <!-- Error message for name field -->
+        @if (form.controls['name'].invalid && form.controls['name'].touched) {
+        <div class="text-danger">
+            Name is required.
+        </div>
+        }
+    </div>
+    <!-- Email input field -->
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" id="email" class="form-control" formControlName="email">
+        <!-- Error message for email field -->
+        @if (form.controls['email'].invalid && form.controls['email'].touched) {
+        <div class="text-danger">
+            A valid email is required.
+        </div>
+        }
+    </div>
+</form>
