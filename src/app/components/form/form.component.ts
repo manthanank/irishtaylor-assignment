@@ -47,7 +47,7 @@ export class FormComponent implements OnInit {
 
     // If an ID is present, update the item, otherwise create a new item
     if (this.id) {
-      item.id = this.id;
+      item._id = this.id;
       this.itemService.updateItem(item).subscribe(() => this.router.navigate(['/list']));
     } else {
       this.itemService.createItem(item).subscribe(() => this.router.navigate(['/list']));

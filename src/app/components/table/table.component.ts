@@ -21,6 +21,10 @@ export class TableComponent implements OnInit {
 
   ngOnInit(): void {
     // Fetch items when the component initializes
+    this.getItems();
+  }
+
+  getItems(): void {
     this.itemService.getItems().subscribe((data) => {
       this.items = data;
     });
@@ -29,7 +33,7 @@ export class TableComponent implements OnInit {
   deleteItem(id: number): void {
     // Delete an item by its ID
     this.itemService.deleteItem(id).subscribe(() => {
-      this.items = this.items.filter((item) => item.id !== id); // Remove the item from the list
+      this.items = this.items.filter((item) => item._id !== id); // Remove the item from the list
       this.closeDeleteModal(); // Close the delete confirmation modal
     });
   }
@@ -62,6 +66,6 @@ export class TableComponent implements OnInit {
     if (modal) {
       modal.style.display = 'block'; // Show the modal
     }
-    this.selectedItem = this.items.find((item) => item.id === id) ?? null; // Set the selected item
+    this.selectedItem = this.items.find((item) => item._id === id) ?? null; // Set the selected item
   }
 }

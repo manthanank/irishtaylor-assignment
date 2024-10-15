@@ -7,7 +7,8 @@ import { Item } from '../models/item.model';
   providedIn: 'root'
 })
 export class ItemService {
-  private apiUrl = 'https://jsonplaceholder.typicode.com/users'; // API URL for CRUD operations
+  private apiUrl = 'http://localhost:5000/api/items'; // API URL for CRUD operations
+
   private itemSource = new BehaviorSubject<Item[]>([]); // BehaviorSubject to hold the list of items
   items$ = this.itemSource.asObservable(); // Observable for the items list
 
@@ -30,7 +31,7 @@ export class ItemService {
 
   // Update an existing item via the API
   updateItem(item: Item): Observable<Item> {
-    return this.http.put<Item>(`${this.apiUrl}/${item.id}`, item);
+    return this.http.put<Item>(`${this.apiUrl}/${item._id}`, item);
   }
 
   // Delete an item by ID via the API

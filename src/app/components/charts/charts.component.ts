@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { Item } from '../../models/item.model';
 import { ItemService } from '../../services/item.service';
@@ -10,8 +10,8 @@ import { ItemService } from '../../services/item.service';
   templateUrl: './charts.component.html',
   styleUrl: './charts.component.css',
 })
-export class ChartsComponent implements OnInit {
-  items: Item[] = []; // Array to hold items fetched from the service
+export class ChartsComponent implements OnInit, OnChanges {
+  @Input() items: Item[] = []; // Array to hold items fetched from the service
   lineChart: Chart | undefined; // Line chart instance
   barChart: Chart | undefined; // Bar chart instance
 
@@ -88,5 +88,10 @@ export class ChartsComponent implements OnInit {
       this.barChart.data.datasets[0].borderColor = borderColor;
       this.barChart.update();
     }
+  }
+
+  // Detect changes when new items are passed from the parent
+  ngOnChanges(): void {
+    this.updateChart();
   }
 }
