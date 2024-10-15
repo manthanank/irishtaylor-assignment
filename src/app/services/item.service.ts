@@ -7,7 +7,7 @@ import { Item } from '../models/item.model';
   providedIn: 'root'
 })
 export class ItemService {
-  private apiUrl = 'http://localhost:5000/api/items'; // API URL for CRUD operations
+  private apiUrl = 'https://irishtaylor-assignment-nodejs.vercel.app/api/items'; // API URL for CRUD operations
 
   private itemSource = new BehaviorSubject<Item[]>([]); // BehaviorSubject to hold the list of items
   items$ = this.itemSource.asObservable(); // Observable for the items list
